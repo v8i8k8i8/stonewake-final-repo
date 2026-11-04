@@ -15,7 +15,7 @@ Every link must open **without sign-in** (preparation-email.md: "כל הקישו
 | 4 | STP (updated) | https://github.com/v8i8k8i8/stonewake-final-repo/blob/master/docs/STP.md · DOCX: https://github.com/v8i8k8i8/stonewake-final-repo/blob/master/docs/STP.docx (live after the docs commit is pushed) | PENDING | | |
 | 5 | Defect report | https://github.com/v8i8k8i8/stonewake-final-repo/blob/master/docs/DEFECTS.md | 200 | | 19:55 |
 | 6 | SpiraTest incidents | [IN:86](https://itac.spiraservice.net/48/Incident/86.aspx) — Spira requires login | n/a | n/a | 19:29 |
-| 7 | Summary video | PENDING (not recorded) | | | |
+| 7 | Summary video | (https://jam.dev/c/384cd4eb-2ded-4afe-ba01-43cfdd631351) | | | |
 
 Report ↔ commit: `build-info.json` commit `188139ead2aa9d868fb82f8ac2eca7c45367dfe7` = final code commit; testOutcome `success`; runUrl = link #2.
 
