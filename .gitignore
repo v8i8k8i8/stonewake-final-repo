@@ -2,6 +2,14 @@
 /blob-report/
 /playwright/.cache/
 /playwright/.auth/
+/playwright-report/
+/test-results/
 
-# Secrets
+# Dependencies
+node_modules/
+
+# Secrets: never commit credentials
+.env
+.env.*
+!.env.example
 .playwright-mcp/
