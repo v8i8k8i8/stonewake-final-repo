@@ -85,5 +85,5 @@ Not measured (one full run before fixing). No inconsistent result observed betwe
 |---|---|---|---|---|
 | P1-a | Secrets in repo; no baseURL; artifacts tracked | Security; cannot run safely | C-01…C-06 | done (uncommitted) |
 | P1-b | 9 failing tests | No green run possible | C-07…C-16 | 21/21 (ED-06 under review) |
-| P2 | 5 consecutive green runs local + CI | Mandatory deliverable | Secrets in CI, five-run scripts | PENDING |
+| P2 | 5 consecutive green runs local + CI | Mandatory deliverable | Secrets in CI, five-run scripts | done: 5/5 CI and 5/5 local on `188139e` |
 | P3 | Duplication, XPath, remaining fixed wait | Maintainability score | Login fixture, locators | not started |

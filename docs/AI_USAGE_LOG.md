@@ -273,19 +273,22 @@ PAUSE all implementation work.
 |---|---|---|---|---|
 | tests/support/credentials.ts | Created | Reads credentials from env vars | Reviewed by QA Lead in P1-a; 21/21 run | P03, C-01 |
 | tests/api.spec.ts | Modified | Env credentials, relative URLs, `/health`, log removed, 4 contract fixes | 10/10 api run | P03, P06, C-01…C-10 |
-| tests/ui.spec.ts | Modified | Env credentials, relative URLs, web-first URL checks, 4 locator fixes, ui 6 change, new ui 11 | 21/21 run; ui 6 change under review | P03, P06, P10, C-01…C-16 |
-| playwright.config.ts | Modified | `api`/`ui` projects with `baseURL` | 21/21 run | P03, C-02 |
+| tests/ui.spec.ts | Modified | Env credentials, relative URLs, web-first URL checks, 4 locator fixes, ui 6 change, new ui 11, skipped ui 6b (IN:86) | 5/5 CI + 5/5 local (21 passed, 1 skipped) | P03, P06, P10, C-01…C-17 |
+| tests/api.spec.ts (api 5) | Modified | Accept documented `null` completeness | same runs | C-19 |
+| playwright.config.ts | Modified | `api`/`ui` projects with `baseURL` | same runs | P03, C-02 |
 | .gitignore | Modified | Ignore `.env`, artifacts, `node_modules` | `git check-ignore -v` | P03, C-03 |
-| README.md | Modified | Security note; setup/run/docs/AI sections | Review PENDING | P05, P11 |
-| docs/*.md | Created / filled | All documentation in `docs/` | Review PENDING (QA Lead) | P03, P05, P06, P10, P11 |
+| .github/workflows/playwright.yml | Modified | Secrets, retries 0, Pages only for green runs | 5/5 CI runs, report public | C-18 |
+| README.md | Modified | Security note; setup/run/docs/AI sections; known defects | QA Lead approved the commits | P05, P11 |
+| docs/*.md, docs/STP.docx | Created / filled | All documentation in `docs/`; STP.docx generated from STP.md | QA Lead approved the commits; several files were reworded in a separate documentation session (19:50–19:53) and fact-checked before the final commit | P03, P05, P06, P10, P11 |
 
 Not AI-assisted: none of the code changes. Decisions, approvals and the choice of credentials were the QA Lead's.
-`docs/STP.docx` is still the unchanged kit template (to be filled by the QA Lead in Google Docs from `docs/STP.md`).
+SpiraTest incident IN:86 was filled in by Claude through Claude in Chrome and saved after the QA Lead's review.
 
 ## 5. Limitations of this log
 - Claude's answers are not copied here; they are in the local transcripts listed above.
 - The 18:12 baseline's exact command was not saved in its console log (MISSING).
-- Prompts typed after 19:05 are not yet in this log — export again before submission.
+- Prompts after 19:05 (module check, IN:86, skip decision, CI and five runs, final commit) are not copied verbatim
+  here because of time; they are in session transcript `1a52ba76` and can be exported with the command in §3.
 
 ## 6. Engineering decisions
 See [ENGINEERING_DECISIONS.md](ENGINEERING_DECISIONS.md). AI proposed options; the QA Lead decided.

@@ -18,11 +18,12 @@ Not sure what a fork is? Read GitHub's guides:
 
 ## Credentials and security
 
-Tests read credentials only from environment variables: `STONEWAKE_EMAIL`, `STONEWAKE_PASSWORD`, `STONEWAKE_API_KEY`.
+The tests read credentials only from environment variables: `STONEWAKE_EMAIL`, `STONEWAKE_PASSWORD`, `STONEWAKE_API_KEY`.
 Optional URL overrides: `STONEWAKE_APP_URL`, `STONEWAKE_API_URL`. Never commit real values; `.env` is git-ignored.
 
-> **Security note:** the original repository committed credentials and an API key. They are removed from the code,
-> but they remain in the public Git history and should be treated as compromised until the owner rotates them.
+> **Security note:** the original repository had the account password and API key in the code and in a committed
+> `.env` file. They are removed from the code now, but they are still in the public Git history. Treat them as
+> compromised until the owner changes them.
 > Details: [ED-01](docs/ENGINEERING_DECISIONS.md#ed-01--hardcoded-credentials-and-api-key-exposed-in-public-git-history).
 
 ## Project structure
@@ -51,8 +52,8 @@ npx playwright test --project=ui           # UI tests only
 npx playwright show-report                 # open the HTML report
 ```
 
-Retries are 0 on purpose: a failure must be visible, not hidden by a retry.
-Do not share or publish reports of failed UI runs: Playwright's failure snapshots can contain what was typed into
+Retries are 0 on purpose: if a test fails, I want to see it, not have a retry hide it.
+Don't share or publish reports of failed UI runs. Playwright's failure snapshots can contain what was typed into
 the login form ([ED-02](docs/ENGINEERING_DECISIONS.md#ed-02--sensitive-data-in-playwright-failure-artifacts)).
 
 ## Reporting and results
@@ -60,29 +61,32 @@ the login form ([ED-02](docs/ENGINEERING_DECISIONS.md#ed-02--sensitive-data-in-p
 | What | Where |
 |---|---|
 | Latest results and five-run evidence | [docs/STABILITY_RESULTS.md](docs/STABILITY_RESULTS.md) |
-| GitHub Actions run / published HTML report | PENDING — see [docs/SUBMISSION_LINKS.md](docs/SUBMISSION_LINKS.md) |
-| Test plan (STP) | [docs/STP.md](docs/STP.md) (PDF PENDING) |
+| Latest GitHub Actions run | https://github.com/v8i8k8i8/stonewake-final-repo/actions/runs/41882225126 |
+| Published HTML report | https://v8i8k8i8.github.io/stonewake-final-repo/ |
+| Test plan (STP) | [docs/STP.md](docs/STP.md) · [docs/STP.docx](docs/STP.docx) |
 | Defects (product / automation / unconfirmed) | [docs/DEFECTS.md](docs/DEFECTS.md) |
 | Every code change | [docs/CHANGES.md](docs/CHANGES.md) |
 | Engineering decisions | [docs/ENGINEERING_DECISIONS.md](docs/ENGINEERING_DECISIONS.md) |
 | Original state | [docs/BASELINE-ANALYSIS.md](docs/BASELINE-ANALYSIS.md) |
 
-Current status (local, 2026-11-04 19:31): `npx --no-install playwright test --retries=0` → 21 passed, 0 failed, 1 skipped.
-Five consecutive runs: PENDING.
+Current status: five consecutive GitHub Actions runs on commit `188139e`, retries 0, all green — each run
+21 passed, 0 failed, 1 skipped (ui 6b, product defect IN:86). Run links: [docs/STABILITY_RESULTS.md](docs/STABILITY_RESULTS.md).
 
 ## Known product defects
 
 | Incident | Problem | Effect on the tests |
 |---|---|---|
-| [IN:86](https://itac.spiraservice.net/48/Incident/86.aspx) | The sidebar does not show "EDD Dossiers", although the dossiers module is enabled and the [docs](https://docs.stonewake.ai/dossiers) say it should be there. The page itself works at `/dossiers`. | `ui 6b sidebar edd dossiers link` is skipped (shown as skipped in reports) until the defect is fixed. `ui 11` covers the page itself. |
+| [IN:86](https://itac.spiraservice.net/48/Incident/86.aspx) | The sidebar does not show "EDD Dossiers", although the dossiers module is enabled and the [docs](https://docs.stonewake.ai/dossiers) say it should be there. The page itself works at `/dossiers`. | `ui 6b sidebar edd dossiers link` is skipped (and shown as skipped in reports) until the bug is fixed. `ui 11` checks the page itself. |
 
 SpiraTest requires a login. Full details: [docs/DEFECTS.md](docs/DEFECTS.md).
 
 ## AI usage
 
-- **Tools:** Claude Code (VS Code extension, model Claude Opus 5.5) and Claude in Chrome for read-only inspection of the app and its docs.
-- **What AI did:** analysed the repository and failures, wrote all code changes listed in [CHANGES.md](docs/CHANGES.md)
-  (C-01…C-16, including `tests/support/credentials.ts` and the new test ui 11) and drafted the documentation.
-- **What the QA Lead did:** set the scope and rules for every step, chose to use personal credentials, approved each
-  change set and decided on open questions. Nothing is committed or pushed without the QA Lead's approval.
+- **Tools:** Claude Code (VS Code extension, model Claude Opus 5.5), and Claude in Chrome for read-only checks of the app and its docs.
+- **What Claude did:** analysed the repository and the failures, wrote all the code changes listed in
+  [CHANGES.md](docs/CHANGES.md) (C-01…C-19, including `tests/support/credentials.ts`, the new tests ui 6b and ui 11,
+  and the CI workflow) and drafted the documentation.
+- **What I did:** I set the scope and rules for every step, chose to use my own credentials, reviewed and approved
+  each set of changes, and made the decisions on open questions (for example, reporting IN:86 and skipping ui 6b).
+  Nothing is committed or pushed without my approval.
 - **Prompt log (verbatim):** [docs/AI_USAGE_LOG.md](docs/AI_USAGE_LOG.md).
