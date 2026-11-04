@@ -2,7 +2,7 @@
 
 
 | # | Item (official) | Link |
-|---|---|---|---|---|---|
+|---|---|---|
 | 1 | GitHub repository | https://github.com/v8i8k8i8/stonewake-final-repo (public fork) | 
 | 2 | GitHub Actions run | https://github.com/v8i8k8i8/stonewake-final-repo/actions/runs/41882225126 (run 5 of 5, all green on `188139e`; all five links in STABILITY_RESULTS.md §3) | 
 | 3 | Run report (HTML) | https://v8i8k8i8.github.io/stonewake-final-repo/ (from run 5) | 
